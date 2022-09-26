@@ -1,0 +1,23 @@
+.course-list {
+  @apply grid grid-cols-auto-fill-13;
+}
+
+.course-card {
+  @apply m-2 p-2;
+}
+
+.course-card div {
+  @apply p-3;
+}
+
+.course-card-info {
+  @apply h-full;
+}
+
+.course-card-meets {
+  @apply h-max;
+}
+
+.course-card > hr {
+  @apply m-0;
+}

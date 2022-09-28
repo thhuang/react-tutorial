@@ -4,6 +4,7 @@ const CourseList = ({ courses }) => (
   <div className="course-list">
     {Object.entries(courses).map(([_, info]) => (
       <CourseCard
+        key={info.term + info.number}
         term={info.term}
         program="CS"
         number={info.number}

@@ -1,9 +1,9 @@
 .course-list {
-  @apply grid grid-cols-auto-fill-13;
+  @apply grid grid-cols-auto-fill-13 gap-5;
 }
 
 .course-list__course-card {
-  @apply m-2 p-2;
+  @apply p-2 border-black;
 }
 
 .course-list__course-card div {
@@ -24,4 +24,19 @@
 
 .course-list__course-card > hr {
   @apply m-0;
+}
+
+.course-list__terms {
+  @apply grid grid-cols-auto-fill-5 gap-2 my-3;
+}
+
+.course-list__term-btn {
+  @apply border border-black rounded-md text-center
+  select-none py-0.5
+  hover:bg-primary-varient hover:text-white hover:border-transparent
+  active:bg-primary active:text-white active:border-transparent;
+}
+
+.selected {
+  @apply bg-primary text-white border-transparent;
 }

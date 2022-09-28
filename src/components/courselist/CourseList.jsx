@@ -16,15 +16,15 @@ const CourseList = ({ courses }) => (
 );
 
 const CourseCard = ({ term, number, program, meets, title }) => (
-  <div className="course-card card">
-    <div className="course-card-info">
+  <div className="course-list__course-card card">
+    <div className="course-list__course-card-info">
       <h3>
         {term} {program} {number}
       </h3>
       {title}
     </div>
     <hr />
-    <div className="course-card-meets">{meets}</div>
+    <div className="course-list__course-card-meets">{meets}</div>
   </div>
 );
 

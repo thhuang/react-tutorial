@@ -2,26 +2,26 @@
   @apply grid grid-cols-auto-fill-13;
 }
 
-.course-card {
+.course-list__course-card {
   @apply m-2 p-2;
 }
 
-.course-card div {
+.course-list__course-card div {
   @apply p-3;
 }
 
-.course-card-info {
+.course-list__course-card-info {
   @apply h-full text-base;
 }
 
-.course-card-info > h3 {
+.course-list__course-card-info > h3 {
   @apply text-lg;
 }
 
-.course-card-meets {
+.course-list__course-card-meets {
   @apply h-max;
 }
 
-.course-card > hr {
+.course-list__course-card > hr {
   @apply m-0;
 }

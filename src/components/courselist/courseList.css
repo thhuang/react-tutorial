@@ -11,7 +11,11 @@
 }
 
 .course-card-info {
-  @apply h-full;
+  @apply h-full text-base;
+}
+
+.course-card-info > h3 {
+  @apply text-lg;
 }
 
 .course-card-meets {

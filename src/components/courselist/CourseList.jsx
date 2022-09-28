@@ -18,9 +18,9 @@ const CourseList = ({ courses }) => (
 const CourseCard = ({ term, number, program, meets, title }) => (
   <div className="course-card card">
     <div className="course-card-info">
-      <h5>
+      <h3>
         {term} {program} {number}
-      </h5>
+      </h3>
       {title}
     </div>
     <hr />

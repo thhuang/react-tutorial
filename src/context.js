@@ -18,3 +18,22 @@ export const termReducer = (state, action) => {
 };
 
 export const TermContext = createContext();
+
+export const initialCourses = new Set();
+
+export const coursesReducer = (state, action) => {
+  switch (action.type) {
+    case 'toggle':
+      const newState = new Set(state);
+      newState.has(action.payload)
+        ? newState.delete(action.payload)
+        : newState.add(action.payload);
+      return newState;
+    case 'reset':
+      return initialCourses;
+    default:
+      throw new Error();
+  }
+};
+
+export const CoursesContext = createContext();

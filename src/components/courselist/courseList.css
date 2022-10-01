@@ -18,6 +18,10 @@
   @apply border-transparent bg-primary text-white;
 }
 
+.course-list__course-card-conflict {
+  @apply border-transparent text-gray-500 bg-red-300;
+}
+
 .course-list__course-card div {
   @apply p-3;
 }

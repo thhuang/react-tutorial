@@ -35,7 +35,7 @@ const Modal = ({ courses }) => {
                   const id = info.term + info.number;
                   if (!coursesState.has(id)) return;
                   return (
-                    <li className="mb-1">
+                    <li key={id} className="mb-1">
                       [{info.term} CS {info.number}] {info.title}
                       <br />
                       {info.meets}

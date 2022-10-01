@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { insertInterval, removeInterval } from './utilities/time';
 
 export const initialTerm = 'all';
 
@@ -29,8 +30,6 @@ export const coursesReducer = (state, action) => {
         ? newState.delete(action.payload)
         : newState.add(action.payload);
       return newState;
-    case 'reset':
-      return initialCourses;
     default:
       throw new Error();
   }
@@ -50,3 +49,25 @@ export const coursesDisplayReducer = (state, action) => {
 };
 
 export const CoursesDisplayContext = createContext();
+
+export const initialTimeIntervals = { fall: [], winter: [], spring: [] };
+
+export const timeIntervalsReducer = (state, action) => {
+  switch (action.type) {
+    case 'update':
+      const updatedState = state;
+      updatedState[action.payload.term] = action.payload.intervals;
+      return updatedState;
+    case 'remove':
+      const removedState = state;
+      removedState[action.payload.term] = action.payload.starts.reduce(
+        (prev, start) => removeInterval(prev, start),
+        removedState[action.payload.term]
+      );
+      return removedState;
+    default:
+      throw new Error();
+  }
+};
+
+export const TimeIntervalsContext = createContext();

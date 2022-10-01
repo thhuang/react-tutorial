@@ -11,6 +11,9 @@ import {
   CoursesContext,
   coursesReducer,
   initialCourses,
+  TimeIntervalsContext,
+  timeIntervalsReducer,
+  initialTimeIntervals,
 } from './context';
 import Banner from './components/Banner';
 import Modal from './components/modal/Modal';
@@ -28,6 +31,7 @@ const Landing = () => {
   const [data, isLoading, error] = useJsonQuery(
     'https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php'
   );
+
   const [coursesDisplayState, coursesDisplayDispatch] = useReducer(
     coursesDisplayReducer,
     initialCoursesDisplay
@@ -35,6 +39,10 @@ const Landing = () => {
   const [coursesState, coursesDispatch] = useReducer(
     coursesReducer,
     initialCourses
+  );
+  const [timeIntervalsState, timeIntervalsDispatch] = useReducer(
+    timeIntervalsReducer,
+    initialTimeIntervals
   );
 
   if (error) return <div>Error: {error}</div>;
@@ -51,9 +59,16 @@ const Landing = () => {
             coursesDisplayDispatch: coursesDisplayDispatch,
           }}
         >
-          <Banner title={data.title} />
-          <Modal courses={data.courses} open={coursesDisplayState} />
-          <CourseList courses={data.courses} />
+          <TimeIntervalsContext.Provider
+            value={{
+              timeIntervalsState: timeIntervalsState,
+              timeIntervalsDispatch: timeIntervalsDispatch,
+            }}
+          >
+            <Banner title={data.title} />
+            <Modal courses={data.courses} open={coursesDisplayState} />
+            <CourseList courses={data.courses} />
+          </TimeIntervalsContext.Provider>
         </CoursesDisplayContext.Provider>
       </CoursesContext.Provider>
     </div>

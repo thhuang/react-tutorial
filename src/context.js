@@ -37,3 +37,16 @@ export const coursesReducer = (state, action) => {
 };
 
 export const CoursesContext = createContext();
+
+export const initialCoursesDisplay = false;
+
+export const coursesDisplayReducer = (state, action) => {
+  switch (action.type) {
+    case 'toggle':
+      return !state;
+    default:
+      throw new Error();
+  }
+};
+
+export const CoursesDisplayContext = createContext();

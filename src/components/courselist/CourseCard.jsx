@@ -6,7 +6,6 @@ const CourseCard = ({ id, term, number, program, meets, title }) => {
   const shouldHidden = termState !== 'all' && termState !== term.toLowerCase();
 
   const { coursesState, coursesDispatch } = useContext(CoursesContext);
-  console.log(coursesState);
   const selected = coursesState.has(id)
     ? 'course-list__course-card-selected'
     : '';

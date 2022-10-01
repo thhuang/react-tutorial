@@ -1,5 +1,13 @@
 .course-list {
-  @apply grid grid-cols-auto-fill-13 gap-5;
+  @apply grid grid-cols-auto-fill-13 gap-y-5 justify-between;
+}
+
+.course-list-header {
+  @apply flex justify-between my-4;
+}
+
+.course-list-schedule {
+  @apply w-28;
 }
 
 .course-list__course-card {
@@ -31,10 +39,10 @@
 }
 
 .course-list__terms {
-  @apply grid grid-cols-auto-fill-5 gap-2 my-3;
+  @apply grid grid-cols-auto-fill-5 gap-2 w-64;
 }
 
-.course-list__term-btn {
+.course-list__btn {
   @apply border border-black rounded-md text-center
   select-none py-0.5
   hover:bg-primary-varient hover:text-white hover:border-transparent

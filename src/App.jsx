@@ -1,11 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useReducer } from 'react';
 
 import { useJsonQuery } from './utilities/fetch';
-import Banner from './components/Banner.jsx';
-import CourseList from './components/courselist/CourseList.jsx';
+import {
+  CoursesDisplayContext,
+  coursesDisplayReducer,
+  initialCoursesDisplay,
+  CoursesContext,
+  coursesReducer,
+  initialCourses,
+} from './context';
+import Banner from './components/Banner';
+import Modal from './components/modal/Modal';
+import CourseList from './components/courselist/CourseList';
 
 const queryClient = new QueryClient();
 
@@ -19,14 +28,34 @@ const Landing = () => {
   const [data, isLoading, error] = useJsonQuery(
     'https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php'
   );
+  const [coursesDisplayState, coursesDisplayDispatch] = useReducer(
+    coursesDisplayReducer,
+    initialCoursesDisplay
+  );
+  const [coursesState, coursesDispatch] = useReducer(
+    coursesReducer,
+    initialCourses
+  );
 
   if (error) return <div>Error: {error}</div>;
   if (isLoading) return <div>Loading ...</div>;
 
   return (
     <div className="container">
-      <Banner title={data.title}></Banner>
-      <CourseList courses={data.courses}></CourseList>
+      <CoursesContext.Provider
+        value={{ coursesState: coursesState, coursesDispatch: coursesDispatch }}
+      >
+        <CoursesDisplayContext.Provider
+          value={{
+            coursesDisplayState: coursesDisplayState,
+            coursesDisplayDispatch: coursesDisplayDispatch,
+          }}
+        >
+          <Banner title={data.title} />
+          <Modal courses={data.courses} open={coursesDisplayState} />
+          <CourseList courses={data.courses} />
+        </CoursesDisplayContext.Provider>
+      </CoursesContext.Provider>
     </div>
   );
 };

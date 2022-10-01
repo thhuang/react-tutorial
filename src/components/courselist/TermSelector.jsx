@@ -8,7 +8,7 @@ const TermSelector = () => {
     <div className="course-list__terms">
       <div
         className={
-          'course-list__term-btn' + (termState === 'fall' ? ' selected' : '')
+          'course-list__btn' + (termState === 'fall' ? ' selected' : '')
         }
         onClick={() =>
           termDispatch({ type: termState === 'fall' ? 'reset' : 'fall' })
@@ -18,7 +18,7 @@ const TermSelector = () => {
       </div>
       <div
         className={
-          'course-list__term-btn' + (termState === 'winter' ? ' selected' : '')
+          'course-list__btn' + (termState === 'winter' ? ' selected' : '')
         }
         onClick={() =>
           termDispatch({ type: termState === 'winter' ? 'reset' : 'winter' })
@@ -28,7 +28,7 @@ const TermSelector = () => {
       </div>
       <div
         className={
-          'course-list__term-btn' + (termState === 'spring' ? ' selected' : '')
+          'course-list__btn' + (termState === 'spring' ? ' selected' : '')
         }
         onClick={() =>
           termDispatch({ type: termState === 'spring' ? 'reset' : 'spring' })

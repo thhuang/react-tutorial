@@ -1,0 +1,19 @@
+.modal {
+  @apply block invisible;
+}
+
+.modal-show {
+  @apply visible bg-[#a9a9a9d9];
+}
+
+.modal-show .modal-content {
+  @apply opacity-100 border-0;
+}
+
+.modal-header {
+  @apply p-4 border-transparent;
+}
+
+.btn-close {
+  @apply m-2;
+}

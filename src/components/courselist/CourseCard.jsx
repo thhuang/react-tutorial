@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { meets2intervals, insertInterval } from '../../utilities/time';
 import {
   TermContext,
@@ -10,11 +11,11 @@ const CourseCard = ({ id, term, number, program, meets, title }) => {
   const { termState } = useContext(TermContext);
   const shouldHidden = termState !== 'all' && termState !== term.toLowerCase();
 
-  const { timeIntervalsState, timeIntervalsDispatch } =
-    useContext(TimeIntervalsContext);
-
   const { coursesState, coursesDispatch } = useContext(CoursesContext);
   const isSelected = coursesState.has(id);
+
+  const { timeIntervalsState, timeIntervalsDispatch } =
+    useContext(TimeIntervalsContext);
 
   const termKey = term.toLowerCase();
   let newIntervals = timeIntervalsState[termKey];
@@ -51,6 +52,11 @@ const CourseCard = ({ id, term, number, program, meets, title }) => {
       }}
     >
       <div className="course-list__course-card-info">
+        <div>
+          <Link to={`/courses/${id}`}>
+            <i className="bi bi-pencil-square course-list__course-card-edit"></i>
+          </Link>
+        </div>
         <h3>
           {term} {program} {number}
         </h3>

@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import './modal.css';
 import { CoursesDisplayContext, CoursesContext } from '../../context';
+import { getCourseId } from '../../utilities/course';
 
-const Modal = ({ courses }) => {
+const Modal = () => {
   const { coursesDisplayState, coursesDisplayDispatch } = useContext(
     CoursesDisplayContext
   );
@@ -31,8 +32,8 @@ const Modal = ({ courses }) => {
               'Select a course by clicking on the course card.'
             ) : (
               <ul>
-                {Object.entries(courses).map(([_, info]) => {
-                  const id = info.term + info.number;
+                {Object.entries(coursesDisplayState).map(([_, info]) => {
+                  const id = getCourseId(info.term, info.number);
                   if (!coursesState.has(id)) return;
                   return (
                     <li key={id} className="mb-1">

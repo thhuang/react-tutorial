@@ -4,14 +4,15 @@ import './courseList.css';
 import {
   TermContext,
   termReducer,
-  initialTerm,
+  initTerm,
   CoursesDisplayContext,
 } from '../../context';
 import CourseCard from './CourseCard';
 import TermSelector from './TermSelector';
+import { getCourseId } from '../../utilities/course';
 
 const CourseList = ({ courses }) => {
-  const [termState, termDispatch] = useReducer(termReducer, initialTerm);
+  const [termState, termDispatch] = useReducer(termReducer, initTerm());
   const { coursesDisplayDispatch } = useContext(CoursesDisplayContext);
 
   return (
@@ -29,7 +30,7 @@ const CourseList = ({ courses }) => {
       </div>
       <div className="course-list">
         {Object.entries(courses).map(([_, info]) => {
-          const id = info.term + info.number;
+          const id = getCourseId(info.term, info.number);
           return (
             <CourseCard
               key={id}

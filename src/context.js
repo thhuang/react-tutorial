@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import { insertInterval, removeInterval } from './utilities/time';
 
-export const initialTerm = 'all';
+export const initTerm = () => 'all';
 
 export const termReducer = (state, action) => {
   switch (action.type) {
@@ -12,7 +12,7 @@ export const termReducer = (state, action) => {
     case 'spring':
       return 'spring';
     case 'reset':
-      return initialTerm;
+      return initTerm();
     default:
       throw new Error();
   }
@@ -20,7 +20,7 @@ export const termReducer = (state, action) => {
 
 export const TermContext = createContext();
 
-export const initialCourses = new Set();
+export const initCourses = () => new Set();
 
 export const coursesReducer = (state, action) => {
   switch (action.type) {
@@ -37,7 +37,7 @@ export const coursesReducer = (state, action) => {
 
 export const CoursesContext = createContext();
 
-export const initialCoursesDisplay = false;
+export const initCoursesDisplay = () => false;
 
 export const coursesDisplayReducer = (state, action) => {
   switch (action.type) {
@@ -50,7 +50,9 @@ export const coursesDisplayReducer = (state, action) => {
 
 export const CoursesDisplayContext = createContext();
 
-export const initialTimeIntervals = { fall: [], winter: [], spring: [] };
+export const initTimeIntervals = () => {
+  return { fall: [], winter: [], spring: [] };
+};
 
 export const timeIntervalsReducer = (state, action) => {
   switch (action.type) {

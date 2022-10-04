@@ -9,7 +9,7 @@ const validateCourseData = (key, val) => {
     case 'title':
       return /(^\w\w)/.test(val) ? '' : 'must be least two characters';
     case 'meets':
-      return /^(M|Tu|W|Th|F)+ ([0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]-([0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/.test(
+      return /^(M|Tu|W|Th|F)+ ([0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]-([0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(
         val
       )
         ? ''

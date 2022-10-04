@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useReducer } from 'react';
 
-import { useJsonQuery } from './utilities/fetch';
+import { useRtdbData } from './utilities/firebase';
 import {
   CoursesDisplayContext,
   coursesDisplayReducer,
@@ -30,12 +30,8 @@ const App = () => (
 );
 
 const Main = () => {
-  const [data, isLoading, error] = useJsonQuery(
-    'https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php'
-  );
-
-  if (error) return <div>Error: {error}</div>;
-  if (isLoading) return <div>Loading ...</div>;
+  const data = useRtdbData('course/');
+  if (data === undefined) return <div>Loading ...</div>;
 
   return (
     <BrowserRouter>

@@ -7,7 +7,7 @@ import {
   TimeIntervalsContext,
 } from '../../context';
 
-const CourseCard = ({ id, term, number, program, meets, title }) => {
+const CourseCard = ({ id, term, number, program, meets, title, user }) => {
   const { termState } = useContext(TermContext);
   const shouldHidden = termState !== 'all' && termState !== term.toLowerCase();
 
@@ -52,11 +52,15 @@ const CourseCard = ({ id, term, number, program, meets, title }) => {
       }}
     >
       <div className="course-list__course-card-info">
-        <div>
-          <Link to={`/courses/${id}`}>
-            <i className="bi bi-pencil-square course-list__course-card-edit"></i>
-          </Link>
-        </div>
+        {user ? (
+          <div>
+            <Link to={`/courses/${id}`}>
+              <i className="bi bi-pencil-square course-list__course-card-edit"></i>
+            </Link>
+          </div>
+        ) : (
+          <div className="h-1.5" />
+        )}
         <h3>
           {term} {program} {number}
         </h3>

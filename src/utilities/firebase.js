@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue, set } from 'firebase/database';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyABeYo5-8IXKUIbVV5sVF8zrbQwwvFHt2Y',
@@ -39,4 +46,20 @@ export const useRtdbUpdate = (path, callback) => {
   };
 
   return [update, error];
+};
+
+export const signInWithGoogle = () => {
+  signInWithPopup(getAuth(app), new GoogleAuthProvider());
+};
+
+const firebaseSignOut = () => signOut(getAuth(app));
+
+export { firebaseSignOut as signOut };
+
+export const useAuthState = () => {
+  const [user, setUser] = useState();
+
+  useEffect(() => onAuthStateChanged(getAuth(app), setUser));
+
+  return [user];
 };

@@ -3,7 +3,7 @@ import './modal.css';
 import { CoursesDisplayContext, CoursesContext } from '../../context';
 import { getCourseId } from '../../utilities/course';
 
-const Modal = () => {
+const Modal = ({ courses }) => {
   const { coursesDisplayState, coursesDisplayDispatch } = useContext(
     CoursesDisplayContext
   );
@@ -32,7 +32,7 @@ const Modal = () => {
               'Select a course by clicking on the course card.'
             ) : (
               <ul>
-                {Object.entries(coursesDisplayState).map(([_, info]) => {
+                {Object.entries(courses).map(([_, info]) => {
                   const id = getCourseId(info.term, info.number);
                   if (!coursesState.has(id)) return;
                   return (

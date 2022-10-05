@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCourseId } from '../../utilities/course';
 
-// import { useDbUpdate } from '../utilities/firebase';
+import { useRtdbUpdate } from '../../utilities/firebase';
 import { useFormData } from '../../utilities/useFormData';
 
 const validateCourseData = (key, val) => {
@@ -67,11 +67,13 @@ const CourseForm = ({ data }) => {
 
   if (!course) return <div>Invalid Course ID</div>;
 
+  const key = course[0];
   const info = course[1];
-  const title = info.title;
-  const meets = info.meets;
 
-  // const [update, result] = useDbUpdate(`/users/${user.id}`);
+  const navigate = useNavigate();
+  const [update, error] = useRtdbUpdate(`/course/courses/${key}`, () =>
+    navigate(-1)
+  );
   const [state, change] = useFormData(validateCourseData, info);
   const submit = (event) => {
     event.preventDefault();
@@ -92,8 +94,7 @@ const CourseForm = ({ data }) => {
       >
         <InputField name="title" text="Title" state={state} change={change} />
         <InputField name="meets" text="Meets" state={state} change={change} />
-        {/* <ButtonBar message={result?.message} /> */}
-        <ButtonBar disabled={state.errors !== undefined} />
+        <ButtonBar message={error} disabled={state.errors !== undefined} />
       </form>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, set } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyABeYo5-8IXKUIbVV5sVF8zrbQwwvFHt2Y',
@@ -15,19 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// export const writeCourseData = (data) => {
-//   const [data, isLoading, error] = useJsonQuery(
-//     'https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php'
-//   );
-
-//   if (error) return <div>Error: {error}</div>;
-//   if (isLoading) return <div>Loading ...</div>;
-//   console.log(data);
-//   set(ref(db, 'course/'), data);
-// };
-
-export const readCourseData = () => {};
-
 export const useRtdbData = (path) => {
   const [data, setData] = useState();
 
@@ -40,4 +27,16 @@ export const useRtdbData = (path) => {
   );
 
   return data;
+};
+
+export const useRtdbUpdate = (path, callback) => {
+  const [error, setError] = useState(null);
+
+  const update = (data) => {
+    set(ref(db, path), data)
+      .then(() => callback())
+      .catch((err) => setError(err.message));
+  };
+
+  return [update, error];
 };

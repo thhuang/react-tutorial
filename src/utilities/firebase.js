@@ -22,18 +22,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-export const useRtdbData = (path) => {
-  const [data, setData] = useState();
+export const useRtdbData = (path, dependency) => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     () =>
       onValue(ref(db, path), (snapshot) => {
         setData(snapshot.val());
+        setIsLoading(false);
       }),
-    []
+    [dependency]
   );
 
-  return data;
+  return [data, isLoading];
 };
 
 export const useRtdbUpdate = (path, callback) => {

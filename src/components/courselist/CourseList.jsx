@@ -11,7 +11,7 @@ import CourseCard from './CourseCard';
 import TermSelector from './TermSelector';
 import { getCourseId } from '../../utilities/course';
 
-const CourseList = ({ courses, user }) => {
+const CourseList = ({ courses, admin }) => {
   const [termState, termDispatch] = useReducer(termReducer, initTerm());
   const { coursesDisplayDispatch } = useContext(CoursesDisplayContext);
 
@@ -40,7 +40,7 @@ const CourseList = ({ courses, user }) => {
               number={info.number}
               meets={info.meets}
               title={info.title}
-              user={user}
+              admin={admin}
             />
           );
         })}

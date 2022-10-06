@@ -4,7 +4,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useReducer } from 'react';
 
-import { useRtdbData, useAuthState } from './utilities/firebase';
+import { useRtdbData } from './utilities/firebase';
+import { useProfile } from './utilities/profile';
 import {
   CoursesDisplayContext,
   coursesDisplayReducer,
@@ -31,8 +32,8 @@ const App = () => (
 );
 
 const Main = () => {
-  const data = useRtdbData('course/');
-  if (data === undefined) return <div>Loading ...</div>;
+  const [data, isLoading] = useRtdbData('course/');
+  if (isLoading) return <div>Loading ...</div>;
 
   return (
     <BrowserRouter>
@@ -57,7 +58,7 @@ const Landing = ({ data }) => {
     timeIntervalsReducer,
     initTimeIntervals()
   );
-  const [user] = useAuthState();
+  const [{ user, isAdmin }] = useProfile();
 
   return (
     <div className="container">
@@ -80,7 +81,7 @@ const Landing = ({ data }) => {
             <Navigation user={user} />
             <Banner title={data.title} />
             <Modal courses={data.courses} />
-            <CourseList courses={data.courses} user={user} />
+            <CourseList courses={data.courses} admin={isAdmin ? user : null} />
           </TimeIntervalsContext.Provider>
         </CoursesDisplayContext.Provider>
       </CoursesContext.Provider>

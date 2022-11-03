@@ -35,6 +35,7 @@ const CourseCard = ({ id, term, number, program, meets, title, admin }) => {
 
   return (
     <div
+      data-cy="course-card"
       className={`card course-list__course-card ${selected} ${conflict}`}
       hidden={shouldHidden}
       onClick={() => {

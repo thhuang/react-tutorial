@@ -9,4 +9,22 @@ describe('Test App', () => {
     cy.visit('/');
     cy.get('[data-cy=course-card]').should('contain', 'Fall CS');
   });
+
+  it('shows Fall courses when Winter is selected', () => {
+    cy.visit('/');
+    cy.get('[data-cy=fall]').click();
+    cy.get('[data-cy=course-card]').should('contain', 'Fall CS');
+  });
+
+  it('shows Winter courses when Winter is selected', () => {
+    cy.visit('/');
+    cy.get('[data-cy=winter]').click();
+    cy.get('[data-cy=course-card]').should('contain', 'Winter CS');
+  });
+
+  it('shows Spring courses when Winter is selected', () => {
+    cy.visit('/');
+    cy.get('[data-cy=spring]').click();
+    cy.get('[data-cy=course-card]').should('contain', 'Spring CS');
+  });
 });

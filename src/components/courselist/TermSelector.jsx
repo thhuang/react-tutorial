@@ -7,6 +7,7 @@ const TermSelector = () => {
   return (
     <div className="course-list__terms">
       <div
+        data-cy="fall"
         className={
           'course-list__btn' + (termState === 'fall' ? ' selected' : '')
         }
@@ -17,6 +18,7 @@ const TermSelector = () => {
         Fall
       </div>
       <div
+        data-cy="winter"
         className={
           'course-list__btn' + (termState === 'winter' ? ' selected' : '')
         }
@@ -27,6 +29,7 @@ const TermSelector = () => {
         Winter
       </div>
       <div
+        data-cy="spring"
         className={
           'course-list__btn' + (termState === 'spring' ? ' selected' : '')
         }

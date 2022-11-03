@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.7.1",
@@ -21,6 +22,7 @@
     "@testing-library/react": "^13.3.0",
     "@vitejs/plugin-react": "^2.0.0",
     "autoprefixer": "^10.4.12",
+    "cypress": "^10.11.0",
     "jsdom": "^20.0.0",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
